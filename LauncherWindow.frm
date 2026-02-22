@@ -153,6 +153,7 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFC0&
       Height          =   495
       Left            =   480
       TabIndex        =   7
@@ -171,6 +172,7 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFC0&
       Height          =   495
       Left            =   480
       TabIndex        =   6
@@ -189,6 +191,7 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFC0&
       Height          =   495
       Left            =   480
       TabIndex        =   5
@@ -207,6 +210,7 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00FFFFC0&
       Height          =   495
       Left            =   480
       TabIndex        =   4
@@ -227,7 +231,9 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-Shell "C:\Users\Ryzen\Documents\TIG-Launcher\TIGUnusedInserter.exe", vbNormalFocus
+Dim relative_path As String
+relative_path = App.Path & "\TIGUnusedInserter.exe"
+Shell relative_path, vbNormalFocus
 End Sub
 
 Private Sub Command2_Click()
