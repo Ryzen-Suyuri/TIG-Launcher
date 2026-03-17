@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.Form Form1 
+Begin VB.Form LauncherWindow 
    BackColor       =   &H00808000&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "TIG-Launcher"
@@ -8,17 +8,18 @@ Begin VB.Form Form1
    ClientTop       =   2625
    ClientWidth     =   4320
    ForeColor       =   &H8000000B&
+   Icon            =   "LauncherWindow.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   6120
    ScaleWidth      =   4320
-   Begin VB.CommandButton Command4 
+   Begin VB.CommandButton btnCrashFix 
       Appearance      =   0  'Flat
       BackColor       =   &H00808000&
       Caption         =   "Get Crash Fix"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -34,12 +35,12 @@ Begin VB.Form Form1
       Top             =   5280
       Width           =   1095
    End
-   Begin VB.CommandButton Command3 
+   Begin VB.CommandButton btnImport 
       Appearance      =   0  'Flat
       BackColor       =   &H00808000&
       Caption         =   "Level BG Importer"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -55,12 +56,12 @@ Begin VB.Form Form1
       Top             =   5280
       Width           =   1095
    End
-   Begin VB.CommandButton Command2 
+   Begin VB.CommandButton btnCredits 
       Appearance      =   0  'Flat
       BackColor       =   &H00808000&
       Caption         =   "Credits"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -76,12 +77,12 @@ Begin VB.Form Form1
       Top             =   5280
       Width           =   1095
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton btnTools 
       Appearance      =   0  'Flat
       BackColor       =   &H00808000&
       Caption         =   "Editor Tools"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -97,7 +98,7 @@ Begin VB.Form Form1
       Top             =   5280
       Width           =   1095
    End
-   Begin VB.CheckBox Check1 
+   Begin VB.CheckBox chkAttempts 
       BackColor       =   &H00808000&
       Caption         =   "Check1"
       Height          =   255
@@ -108,7 +109,7 @@ Begin VB.Form Form1
       Top             =   4080
       Width           =   255
    End
-   Begin VB.CheckBox Check1 
+   Begin VB.CheckBox chkDeath 
       BackColor       =   &H00808000&
       Caption         =   "Check1"
       Height          =   255
@@ -119,7 +120,7 @@ Begin VB.Form Form1
       Top             =   3360
       Width           =   255
    End
-   Begin VB.CheckBox Check1 
+   Begin VB.CheckBox chkNoclip 
       BackColor       =   &H00808000&
       Caption         =   "Check1"
       Height          =   255
@@ -130,7 +131,7 @@ Begin VB.Form Form1
       Top             =   2640
       Width           =   255
    End
-   Begin VB.CheckBox Check1 
+   Begin VB.CheckBox chkPractice 
       BackColor       =   &H00808000&
       Caption         =   "Check1"
       Height          =   255
@@ -141,11 +142,11 @@ Begin VB.Form Form1
       Top             =   1920
       Width           =   255
    End
-   Begin VB.Label Label4 
+   Begin VB.Label lblAttempts 
       BackColor       =   &H00808000&
       Caption         =   "Track Total Attempts Per Level"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -160,11 +161,11 @@ Begin VB.Form Form1
       Top             =   4080
       Width           =   3735
    End
-   Begin VB.Label Label3 
+   Begin VB.Label lblDeath 
       BackColor       =   &H00808000&
       Caption         =   "Disable Death Effect"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -179,11 +180,11 @@ Begin VB.Form Form1
       Top             =   3360
       Width           =   2775
    End
-   Begin VB.Label Label2 
+   Begin VB.Label lblNoclip 
       BackColor       =   &H00808000&
       Caption         =   "Noclip"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -198,11 +199,11 @@ Begin VB.Form Form1
       Top             =   2640
       Width           =   2775
    End
-   Begin VB.Label Label1 
+   Begin VB.Label lblPractice 
       BackColor       =   &H00808000&
       Caption         =   "Practice Mode Music"
       BeginProperty Font 
-         Name            =   "Akashi"
+         Name            =   "Arial"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -217,29 +218,42 @@ Begin VB.Form Form1
       Top             =   1920
       Width           =   2775
    End
-   Begin VB.Image Image1 
+   Begin VB.Image imgBanner 
       Height          =   1665
       Left            =   0
-      Picture         =   "LauncherWindow.frx":0000
+      Picture         =   "LauncherWindow.frx":7098
       Top             =   0
       Width           =   4500
    End
 End
-Attribute VB_Name = "Form1"
+Attribute VB_Name = "LauncherWindow"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Command1_Click()
-Dim relative_path As String
-relative_path = App.Path & "\TIGUnusedInserter.exe"
-Shell relative_path, vbNormalFocus
+Private Sub chkNoclip_Click(Index As Integer)
+    Dim patchBytes(0) As Byte
+    If chkNoclip(1).Value = vbChecked Then
+        patchBytes(0) = &HEB
+        ' Patch
+        PatchMemory "ImpossibleGame.exe", &H33891, patchBytes
+    Else
+        patchBytes(0) = &H74
+        ' Revert patch
+        PatchMemory "ImpossibleGame.exe", &H33891, patchBytes
+    End If
 End Sub
 
-Private Sub Command2_Click()
-Credits.Show
+Private Sub btnTools_Click()
+    Dim relative_path As String
+    relative_path = App.Path & "\TIGUnusedInserter.exe"
+    Shell relative_path, vbNormalFocus
 End Sub
 
-Private Sub Command4_Click()
-CrashFixGetWindow.Show
+Private Sub btnCredits_Click()
+    Credits.Show
+End Sub
+
+Private Sub btnCrashFix_Click()
+    CrashFixGetWindow.Show
 End Sub

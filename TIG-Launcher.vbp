@@ -1,9 +1,16 @@
 Type=Exe
-Form=Form1.frm
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\Windows\system32\stdole2.tlb#OLE Automation
-Startup="Form1"
+Form=LauncherWindow.frm
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\..\WINDOWS\system32\stdole2.tlb#OLE Automation
+Form=Credits.frm
+Form=CrashFixGetWindow.frm
+Module=SharedFunctions; SharedFunctions.bas
+IconForm="LauncherWindow"
+Startup="LauncherWindow"
+HelpFile=""
+Title="TIG-Launcher"
+ExeName32="TIG-Launcher.exe"
 Command32=""
-Name="Project1"
+Name="TIGLauncher"
 HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
@@ -26,3 +33,7 @@ Unattended=0
 Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
+DebugStartupOption=0
+
+[MS Transaction Server]
+AutoRefresh=1

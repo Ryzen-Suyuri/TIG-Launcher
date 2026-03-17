@@ -7,6 +7,7 @@ Begin VB.Form Credits
    ClientLeft      =   6630
    ClientTop       =   1875
    ClientWidth     =   5790
+   Icon            =   "Credits.frx":0000
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -50,7 +51,7 @@ Begin VB.Form Credits
    Begin VB.Label Label6 
       Alignment       =   2  'Center
       BackColor       =   &H00808000&
-      Caption         =   $"Credits.frx":0000
+      Caption         =   $"Credits.frx":000C
       BeginProperty Font 
          Name            =   "Akashi"
          Size            =   14.25
@@ -173,4 +174,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
+Private Sub Form_Load()
+    Credits.Icon = LauncherWindow.Icon
+End Sub

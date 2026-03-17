@@ -7,12 +7,13 @@ Begin VB.Form CrashFixGetWindow
    ClientLeft      =   6255
    ClientTop       =   3585
    ClientWidth     =   4560
+   Icon            =   "CrashFixGetWindow.frx":0000
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   2475
    ScaleWidth      =   4560
-   Begin VB.CommandButton Command2 
+   Begin VB.CommandButton btnNah 
       BackColor       =   &H00808000&
       Caption         =   "No"
       BeginProperty Font 
@@ -31,7 +32,7 @@ Begin VB.Form CrashFixGetWindow
       Top             =   1200
       Width           =   2295
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton btnSure 
       BackColor       =   &H00808000&
       Caption         =   "Yes"
       BeginProperty Font 
@@ -59,9 +60,9 @@ Begin VB.Form CrashFixGetWindow
       Top             =   1800
       Width           =   735
    End
-   Begin VB.Label Label1 
+   Begin VB.Label lblFixDesc 
       BackColor       =   &H00808000&
-      Caption         =   $"CrashFixGetWindow.frx":0000
+      Caption         =   $"CrashFixGetWindow.frx":000C
       BeginProperty Font 
          Name            =   "Akashi"
          Size            =   11.25
@@ -84,6 +85,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Command2_Click()
-CrashFixGetWindow.Hide
+Private Sub Form_Load()
+    CrashFixGetWindow.Icon = LauncherWindow.Icon
+End Sub
+
+Private Sub btnNah_Click()
+   Unload Me
 End Sub
