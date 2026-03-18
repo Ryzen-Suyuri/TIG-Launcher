@@ -105,7 +105,7 @@ Public Sub PatchMemory(ByVal exeName As String, ByVal targetAddress As Long, ByR
                     MsgBox "Error writing memory patch with WriteProcessMemory..."
                 End If
                 If VirtualProtectEx(hProc, imageBaseAddress + targetAddress, UBound(patchBytes) + 1, oldProtect, oldProtect) = 0 Then
-                    MsgBox "Error reverting memory permission with VirtualProtect..."
+                    MsgBox "Error restoring memory permission with VirtualProtect..."
                 End If
                 
                 CloseHandle hProc

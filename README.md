@@ -2,7 +2,7 @@
 
 Launcher, toolkit, and memory patcher for various cheats and utilities for The Impossible Game
 
-Made with retro love in Visual Basic 6, compatible with Windows 2000-11
+Made with retro love in Visual Basic 6 and Visual C++ 6, compatible with Windows 2000-11
 
 ## Usage
 

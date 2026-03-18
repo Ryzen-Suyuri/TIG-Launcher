@@ -1,4 +1,5 @@
-LauncherWindow = 130, 181, 977, 661, C, 66, 101, 913, 581, C
+LauncherWindow = 25, 201, 872, 681, , 124, 150, 971, 630, C
 Credits = 69, 69, 878, 484, C, 107, 7, 991, 610, C
-CrashFixGetWindow = 184, 184, 963, 649, C, 161, 161, 940, 626, C
-SharedFunctions = 43, 20, 890, 500, C
+CrashFixGetWindow = 220, 9, 999, 474, , 108, 227, 887, 692, C
+SharedFunctions = 49, 82, 896, 562, C
+CommonDialog = 66, 87, 915, 575, 

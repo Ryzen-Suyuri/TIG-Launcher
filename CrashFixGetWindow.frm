@@ -1,5 +1,4 @@
 VERSION 5.00
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form CrashFixGetWindow 
    BackColor       =   &H00808000&
    BorderStyle     =   1  'Fixed Single
@@ -14,13 +13,6 @@ Begin VB.Form CrashFixGetWindow
    MinButton       =   0   'False
    ScaleHeight     =   2475
    ScaleWidth      =   4560
-   Begin MSComDlg.CommonDialog dlgImpossibleSelect 
-      Left            =   4080
-      Top             =   2040
-      _ExtentX        =   847
-      _ExtentY        =   847
-      _Version        =   393216
-   End
    Begin VB.CommandButton btnNah 
       BackColor       =   &H00808000&
       Caption         =   "No"
@@ -98,38 +90,40 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub btnSure_Click()
-    ' Only allow ImpossibleGame.exe to be selected, non-read-only
-    dlgImpossibleSelect.Filter = "Impossible Game executable (ImpossibleGame.exe)|ImpossibleGame.exe"
-    dlgImpossibleSelect.DialogTitle = "Select Impossible Game executable (ImpossibleGame.exe)"
-    dlgImpossibleSelect.Flags = cdlOFNHideReadOnly
-
     ' Get Steam directory from registry if installed
     Dim shell As Object
     Set shell = CreateObject("WScript.Shell")
     Dim steamDir As String
     On Error Resume Next
     steamDir = shell.RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\Valve\Steam\InstallPath")
+    
+    Dim fileName As String
     ' If Steam is installed, default the file open dialog to the Impossible Game
     ' install directory from there
+    ' Also only allow ImpossibleGame.exe to be selected
     If Not StrComp(steamDir, "", vbBinaryCompare) = 0 Then
-        dlgImpossibleSelect.InitDir = steamDir & "\steamapps\common\TheImpossibleGame"
+        fileName = ShowOpen("Select Impossible Game executable (ImpossibleGame.exe)", _
+        steamDir & "\steamapps\common\TheImpossibleGame\", _
+        "Impossible Game executable (ImpossibleGame.exe),ImpossibleGame.exe")
+    Else
+        fileName = ShowOpen("Select Impossible Game executable (ImpossibleGame.exe)", _
+        "", _
+        "Impossible Game executable (ImpossibleGame.exe),ImpossibleGame.exe")
     End If
     
-    dlgImpossibleSelect.ShowOpen
-    
     ' If a file is selected, patch it
-    If Not StrComp(dlgImpossibleSelect.FileName, "", vbBinaryCompare) = 0 Then
+    If Not StrComp(fileName, "", vbBinaryCompare) = 0 Then
         ' Make backup .og file if nonexistent
-        If Dir(dlgImpossibleSelect.FileName & ".og") <> "" Then
+        If Dir(fileName & ".og") = "" Then
             On Error GoTo CopyFail
-            FileCopy dlgImpossibleSelect.FileName, dlgImpossibleSelect.FileName & ".og"
+            FileCopy fileName, fileName & ".og"
         End If
         
         ' Begin the patching. Open the file
         On Error GoTo PatchFail
         Dim impossibleFile As Integer
         impossibleFile = FreeFile
-        Open dlgImpossibleSelect.FileName For Binary Access Write Lock Read Write As #impossibleFile
+        Open fileName For Binary Access Write Lock Read Write As #impossibleFile
         
         ' VB6 Puts start at 1!
         ' Write first continuous patch at 0x349DA
@@ -140,7 +134,7 @@ Private Sub btnSure_Click()
         patch1(3) = &H1
         patch1(4) = &H0
         Put #impossibleFile, &H349DA + 1, patch1
-            
+        
         ' Write second continuous patch at 0x4AAF2
         Dim patch2(11) As Byte
         patch2(0) = &HD9
@@ -158,7 +152,7 @@ Private Sub btnSure_Click()
         Put #impossibleFile, &H4AAF2 + 1, patch2
             
         Close #impossibleFile
-        MsgBox dlgImpossibleSelect.FileName & " patched!"
+        MsgBox fileName & " patched!"
         Unload Me
     End If
     Exit Sub
