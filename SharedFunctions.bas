@@ -73,7 +73,7 @@ Public Sub PatchMemory(ByVal exeName As String, ByVal targetAddress As Long, ByR
             ' Strip garbage from current executable's name after null (0) terminator
             currName = Left$(currProcEntry.szExeFile, InStr(currProcEntry.szExeFile, Chr$(0)) - 1)
             ' If this is the executable with the name we're looking for
-            If StrComp(currName, exeName, 1) = 0 Then
+            If StrComp(currName, exeName, vbBinaryCompare) = 0 Then
                 CloseHandle thSnapshot
                 
                 ' Get a handle to the current process

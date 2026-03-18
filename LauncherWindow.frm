@@ -19,7 +19,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Get Crash Fix"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -40,7 +40,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Level BG Importer"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -61,7 +61,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Credits"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -82,7 +82,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Editor Tools"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -146,7 +146,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Track Total Attempts Per Level"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -165,7 +165,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Disable Death Effect"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -184,7 +184,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Noclip"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
@@ -203,7 +203,7 @@ Begin VB.Form LauncherWindow
       BackColor       =   &H00808000&
       Caption         =   "Practice Mode Music"
       BeginProperty Font 
-         Name            =   "Arial"
+         Name            =   "Akashi"
          Size            =   11.25
          Charset         =   0
          Weight          =   400
